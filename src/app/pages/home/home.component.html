@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<header class="navbar" id="navbar">
+    <div class="nav-container">
+        <a routerLink="/" class="logo">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">ComptAssist</div>
+        </a>
+        <ul class="nav-links">
+            <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+            <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+            <li><a routerLink="/features" routerLinkActive="active">Fonctionnalités</a></li>
+            <li><a routerLink="/pricing" routerLinkActive="active">Tarifs</a></li>
+            <li><a routerLink="/contact" routerLinkActive="active">Contactez-nous</a></li>
+        </ul>
+    </div>
+</header>
 
-</body>
-</html>
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Gérez vos factures simplement et efficacement</h1>
+                <p class="hero-subtitle">
+                    Une solution complète et professionnelle pour la gestion de vos factures et paiements.
+                    Optimisez votre comptabilité avec notre plateforme intuitive.
+                </p>
+                <div class="hero-buttons">
+                    <a routerLink="/auth/login" class="btn btn-primary" nbTooltip="Connectez-vous à votre compte existant">S'IDENTIFIER</a>
+                    <a routerLink="/auth/register" class="btn btn-secondary" nbTooltip="Créez votre compte gratuitement">CRÉEZ VOTRE COMPTE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of your sections... -->
+</main>
+
+<!-- Floating CTA -->
+<a routerLink="/auth/register" class="floating-cta" nbTooltip="Commencez maintenant !">
+    ✨ Essai Gratuit
+</a>

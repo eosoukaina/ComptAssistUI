@@ -1,250 +1,111 @@
-@import '~@nebular/theme/styles/theming';
-
-:host {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-
-  // Background pattern
-  background:
-          radial-gradient(circle at 25% 25%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
-          nb-theme(background-basic-color-1);
-}
+// src/app/pages/auth/login/login.component.scss
+@use '@nebular/theme/styles/theming' as *;
 
 .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: nb-theme(background-basic-color-2);
   padding: 1rem;
-  width: 100%;
-  max-width: 28rem;
 }
 
 .login-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1.5rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-  padding: 2.5rem;
-  animation: fadeInUp 0.8s ease-out;
-
-  @include nb-for-theme(dark) {
-    background: rgba(30, 41, 59, 0.95);
-    border-color: rgba(148, 163, 184, 0.1);
-  }
+  width: 100%;
+  max-width: 400px;
+  box-shadow: nb-theme(shadow);
+  border-radius: nb-theme(border-radius);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.login-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-
-    .logo-icon {
-      background: linear-gradient(135deg, #1E3A8A, #059669);
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-      nb-icon {
-        font-size: 2.5rem;
-        color: white;
-      }
-    }
-  }
-
-  .login-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: nb-theme(text-basic-color);
-    margin-bottom: 0.75rem;
-    margin-top: 0;
-  }
-
-  .login-subtitle {
-    color: nb-theme(text-hint-color);
-    font-weight: 500;
-    margin: 0;
-  }
+.logo-icon {
+  font-size: 3rem;
+  color: nb-theme(color-primary-500);
+  margin-bottom: 1rem;
 }
 
 .login-form {
-  .form-group {
-    margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-    .form-label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: nb-theme(text-basic-color);
-      margin-bottom: 0.75rem;
-    }
+.form-group {
+  margin-bottom: 1rem;
+}
 
-    nb-form-field {
-      input {
-        transition: all 0.3s ease;
+.error-message {
+  color: nb-theme(color-danger-500);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  line-height: 1.2;
+}
 
-        &:focus {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
-        }
-      }
-    }
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
 
-    .password-toggle {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
+.forgot-password {
+  font-size: 0.875rem;
+  color: nb-theme(text-hint-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
 
-      &:hover {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 0.25rem;
-      }
-
-      @include nb-for-theme(dark) {
-        &:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-      }
-    }
-
-    .error-message {
-      margin-top: 0.5rem;
-      font-size: 0.875rem;
-      color: nb-theme(color-danger-default);
-      font-weight: 500;
-    }
+  &:hover {
+    color: nb-theme(color-primary-500);
+    text-decoration: underline;
   }
+}
 
-  .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+.login-button {
+  margin-top: 1rem;
+  height: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
-    .forgot-password-link {
-      font-size: 0.875rem;
-      color: nb-theme(color-primary-default);
-      text-decoration: none;
-
-      &:hover {
-        color: nb-theme(color-success-default);
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .login-button {
-    font-size: 1.125rem;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #1E3A8A, #059669);
-    border: none;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
-
-    &:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-      background: linear-gradient(135deg, #1E40AF, #047857);
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .loading-icon {
-      animation: spin 1s linear infinite;
-      margin-right: 0.5rem;
-    }
-  }
-
-  .login-error-alert {
-    margin-top: 1rem;
-  }
+.spinner {
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.login-footer {
+.error-alert {
+  margin-top: 1rem;
+}
+
+.register-link {
   text-align: center;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  margin-top: 1.5rem;
+  color: nb-theme(text-hint-color);
+  font-size: 0.875rem;
 
-  p {
-    margin: 0.5rem 0;
-    color: nb-theme(text-hint-color);
-  }
-
-  .link-primary {
-    color: nb-theme(color-primary-default);
-    font-weight: 600;
+  a {
+    color: nb-theme(color-primary-500);
     text-decoration: none;
+    font-weight: 500;
 
     &:hover {
-      color: nb-theme(color-primary-hover);
-      text-decoration: underline;
-    }
-  }
-
-  .back-link {
-    color: nb-theme(text-hint-color);
-    font-size: 0.875rem;
-    text-decoration: none;
-
-    &:hover {
-      color: nb-theme(text-basic-color);
       text-decoration: underline;
     }
   }
 }
 
-// Responsive design
-@media (max-width: 640px) {
+// Responsive adjustments
+@media (max-width: 576px) {
   .login-card {
-    padding: 1.5rem;
-    margin: 1rem;
+    border-radius: 0;
+    box-shadow: none;
   }
 
-  .login-header {
-    margin-bottom: 2rem;
-
-    .login-title {
-      font-size: 1.5rem;
-    }
-  }
-
-  .login-form .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-options {
-    flex-direction: column;
+  .login-container {
+    padding: 0;
     align-items: flex-start;
-    gap: 1rem;
   }
 }

@@ -1,137 +1,113 @@
+<!-- src/app/pages/auth/login/login.component.html -->
 <div class="login-container">
-    <div class="login-card">
-        <!-- Header -->
-        <div class="login-header">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <nb-icon icon="calculator-outline"></nb-icon>
+    <nb-card class="login-card">
+        <nb-card-header class="text-center">
+            <nb-icon icon="calculator-outline" class="logo-icon"></nb-icon>
+            <h2>Welcome to ComptAssist</h2>
+            <p>Sign in to your account</p>
+        </nb-card-header>
+
+        <nb-card-body>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+                <div class="form-group">
+                    <nb-form-field>
+                        <input
+                                nbInput
+                                fullWidth
+                                type="email"
+                                formControlName="email"
+                                placeholder="Email address"
+                                [status]="getFieldStatus('email')"
+                                autocomplete="email">
+                        <nb-icon
+                                nbPrefix
+                                icon="email-outline"
+                                pack="eva">
+                        </nb-icon>
+                    </nb-form-field>
+
+                    @if (loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)) {
+                        <div class="error-message">
+                            @if (loginForm.get('email')?.errors?.['required']) {
+                                <span>Email is required</span>
+                            }
+                            @if (loginForm.get('email')?.errors?.['email']) {
+                                <span>Please enter a valid email address</span>
+                            }
+                        </div>
+                    }
                 </div>
-            </div>
-            <h1 class="login-title">Bienvenue sur ComptAssist</h1>
-            <p class="login-subtitle">Connectez-vous à votre espace de gestion comptable</p>
-        </div>
 
-        <!-- Form -->
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-            <!-- Email Field -->
-            <div class="form-group">
-                <label for="email" class="form-label">
-                    Adresse e-mail
-                </label>
-                <nb-form-field>
-                    <input
-                            nbInput
-                            type="email"
-                            id="email"
-                            formControlName="email"
-                            placeholder="votre@email.com"
-                            fullWidth
-                            fieldSize="large"
-                            [status]="getFieldStatus('email')"
-                    >
-                    <nb-icon
-                            nbSuffix
-                            icon="email-outline"
-                            *ngIf="!loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.value">
-                    </nb-icon>
-                </nb-form-field>
-                <div
-                        *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-                        class="error-message">
-          <span *ngIf="loginForm.get('email')?.errors?.['required']">
-            L'adresse e-mail est requise
-          </span>
-                    <span *ngIf="loginForm.get('email')?.errors?.['email']">
-            Veuillez saisir une adresse e-mail valide
-          </span>
+                <div class="form-group">
+                    <nb-form-field>
+                        <input
+                                nbInput
+                                fullWidth
+                                [type]="showPassword ? 'text' : 'password'"
+                                formControlName="password"
+                                placeholder="Password"
+                                [status]="getFieldStatus('password')"
+                                autocomplete="current-password">
+                        <nb-icon
+                                nbPrefix
+                                icon="lock-outline"
+                                pack="eva">
+                        </nb-icon>
+                        <button
+                                nbButton
+                                ghost
+                                type="button"
+                                (click)="togglePasswordVisibility()"
+                                class="password-toggle">
+                            <nb-icon
+                                    [icon]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+                                    pack="eva">
+                            </nb-icon>
+                        </button>
+                    </nb-form-field>
+
+                    @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)) {
+                        <div class="error-message">
+                            @if (loginForm.get('password')?.errors?.['required']) {
+                                <span>Password is required</span>
+                            }
+                            @if (loginForm.get('password')?.errors?.['minlength']) {
+                                <span>Password must be at least 6 characters long</span>
+                            }
+                        </div>
+                    }
                 </div>
-            </div>
 
-            <!-- Password Field -->
-            <div class="form-group">
-                <label for="password" class="form-label">
-                    Mot de passe
-                </label>
-                <nb-form-field>
-                    <input
-                            nbInput
-                            [type]="showPassword ? 'text' : 'password'"
-                            id="password"
-                            formControlName="password"
-                            placeholder="Votre mot de passe"
-                            fullWidth
-                            fieldSize="large"
-                            [status]="getFieldStatus('password')"
-                    >
-                    <button
-                            nbSuffix
-                            type="button"
-                            (click)="togglePasswordVisibility()"
-                            class="password-toggle">
-                        <nb-icon [icon]="showPassword ? 'eye-off-outline' : 'eye-outline'"></nb-icon>
-                    </button>
-                </nb-form-field>
-                <div
-                        *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-                        class="error-message">
-          <span *ngIf="loginForm.get('password')?.errors?.['required']">
-            Le mot de passe est requis
-          </span>
-                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
-            Le mot de passe doit contenir au moins 6 caractères
-          </span>
+                <div class="form-options">
+                    <nb-checkbox formControlName="rememberMe">Remember me</nb-checkbox>
+                    <a routerLink="/auth/forgot-password" class="forgot-password">Forgot password?</a>
                 </div>
-            </div>
 
-            <!-- Remember Me & Forgot Password -->
-            <div class="form-options">
-                <nb-checkbox formControlName="rememberMe">
-                    Se souvenir de moi
-                </nb-checkbox>
-                <a href="#" class="forgot-password-link">
-                    Mot de passe oublié ?
-                </a>
-            </div>
+                <button
+                        nbButton
+                        fullWidth
+                        status="primary"
+                        size="large"
+                        type="submit"
+                        [disabled]="loginForm.invalid || isLoading"
+                        class="login-button">
+                    @if (isLoading) {
+                        <nb-icon icon="loader-outline" class="spinner" pack="eva"></nb-icon>
+                    } @else {
+                        <span>Sign In</span>
+                    }
+                </button>
 
-            <!-- Submit Button -->
-            <button
-                    nbButton
-                    type="submit"
-                    status="primary"
-                    size="large"
-                    fullWidth
-                    [disabled]="loginForm.invalid || isLoading"
-                    class="login-button">
-                <nb-icon
-                        *ngIf="isLoading"
-                        icon="loader-outline"
-                        class="loading-icon">
-                </nb-icon>
-                {{ isLoading ? 'Connexion en cours...' : 'Se connecter' }}
-            </button>
+                @if (loginError) {
+                    <nb-alert status="danger" class="error-alert">
+                        {{ loginError }}
+                    </nb-alert>
+                }
 
-            <!-- Error Message -->
-            <nb-alert
-                    *ngIf="loginError"
-                    status="danger"
-                    class="login-error-alert">
-                {{ loginError }}
-            </nb-alert>
-        </form>
-
-        <!-- Footer -->
-        <div class="login-footer">
-            <p class="signup-link">
-                Pas encore de compte ?
-                <a routerLink="/auth/register" class="link-primary">
-                    Créez votre compte
-                </a>
-            </p>
-            <p>
-                <a routerLink="/" class="back-link">
-                    ← Retour à l'accueil
-                </a>
-            </p>
-        </div>
-    </div>
+                <div class="register-link">
+                    Don't have an account? <a routerLink="/auth/register">Create one</a>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
 </div>

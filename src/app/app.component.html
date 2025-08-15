@@ -7,49 +7,23 @@
                     <span class="brand-name">ComptAssist</span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Fonctionnalités</a></li>
-                    <li><a href="#">Tarifs</a></li>
-                    <li><a href="#">Contactez-nous</a></li>
+                    <li><a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+                    <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+                    <li><a routerLink="/features" routerLinkActive="active">Fonctionnalités</a></li>
+                    <li><a routerLink="/pricing" routerLinkActive="active">Tarifs</a></li>
+                    <li><a routerLink="/contact" routerLinkActive="active">Contactez-nous</a></li>
                 </ul>
             </nav>
         </header>
     </nb-layout-header>
 
     <nb-layout-column>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Gérez vos factures simplement et efficacement</h1>
-                <p class="hero-subtitle">
-                    Une solution complète pour la gestion de vos factures et paiements.
-                </p>
-                <div class="cta-buttons">
-                    <button nbButton status="primary" routerLink="/login">S'identifier</button>
-                    <button nbButton status="warning" routerLink="/signup">Créez votre compte</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Software Description -->
-        <section class="software-section">
-            <div class="software-text">
-                <h2>Une interface moderne et intuitive</h2>
-                <p>
-                    Notre logiciel de facturation est conçu pour être facile à utiliser,
-                    tout en offrant des fonctionnalités puissantes.
-                </p>
-            </div>
-            <div class="software-image">
-                <img src="assets/software-screenshot.png" alt="Software Screenshot" class="software-screenshot">
-            </div>
-        </section>
+        <router-outlet></router-outlet>
     </nb-layout-column>
 
     <nb-layout-footer fixed>
         <footer class="footer">
-            © 2025 ComptAssist - Tous droits réservés
+            2025 ComptAssist - Tous droits réservés
         </footer>
     </nb-layout-footer>
 </nb-layout>

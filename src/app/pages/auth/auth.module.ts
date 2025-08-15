@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router'; // Add Routes import
+import { RouterModule, Routes } from '@angular/router';
 
 // Nebular imports
 import {
@@ -20,21 +20,28 @@ import {
 // Import standalone components
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthLayoutComponent } from './auth-layout.component';
 
 // Add proper typing to routes
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      }
+    ]
   }
 ];
 
@@ -46,23 +53,22 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-
-    // Import standalone components here
-    LoginComponent,
-    RegisterComponent,
-
+    
     // Nebular modules
-    NbAlertModule,
-    NbButtonModule,
-    NbCheckboxModule,
-    NbInputModule,
-    NbIconModule,
-    NbFormFieldModule,
     NbLayoutModule,
     NbCardModule,
+    NbButtonModule,
+    NbInputModule,
+    NbFormFieldModule,
+    NbIconModule,
+    NbCheckboxModule,
+    NbAlertModule,
     NbSpinnerModule,
-    NbToastrModule
-  ],
-  providers: []
+    
+    // Import standalone components
+    AuthLayoutComponent,
+    LoginComponent,
+    RegisterComponent
+  ]
 })
-export class AuthModule { }
+export class AuthModule {}
