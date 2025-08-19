@@ -1,41 +1,132 @@
-<header class="navbar" id="navbar">
-    <div class="nav-container">
-        <a routerLink="/" class="logo">
-            <div class="logo-icon">C</div>
-            <div class="logo-text">ComptAssist</div>
-        </a>
-        <ul class="nav-links">
-            <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
-            <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
-            <li><a routerLink="/features" routerLinkActive="active">Fonctionnalités</a></li>
-            <li><a routerLink="/pricing" routerLinkActive="active">Tarifs</a></li>
-            <li><a routerLink="/contact" routerLinkActive="active">Contactez-nous</a></li>
-        </ul>
-    </div>
-</header>
-
-<main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Gérez vos factures simplement et efficacement</h1>
-                <p class="hero-subtitle">
-                    Une solution complète et professionnelle pour la gestion de vos factures et paiements.
-                    Optimisez votre comptabilité avec notre plateforme intuitive.
-                </p>
-                <div class="hero-buttons">
-                    <a routerLink="/auth/login" class="btn btn-primary" nbTooltip="Connectez-vous à votre compte existant">S'IDENTIFIER</a>
-                    <a routerLink="/auth/register" class="btn btn-secondary" nbTooltip="Créez votre compte gratuitement">CRÉEZ VOTRE COMPTE</a>
-                </div>
+<!-- Main Content -->
+<main class="main-content">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Logiciel de facturation simple et professionnel
+            <span class="highlight">pour votre entreprise</span>
+          </h1>
+          <p class="hero-subtitle">
+            Gérez votre facturation en toute simplicité avec notre solution tout-en-un.
+            Créez, envoyez et gérez vos factures en quelques clics, où que vous soyez.
+          </p>
+          <div class="cta-buttons">
+            <a [routerLink]="['/auth/register']" class="btn btn-primary">
+              Essai gratuit 30 jours
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#features" class="btn btn-outline">
+              Découvrir les fonctionnalités
+            </a>
+          </div>
+          <div class="trust-badges">
+            <div class="badge">
+              <i class="fas fa-check-circle"></i>
+              <span>Sans engagement</span>
             </div>
+            <div class="badge">
+              <i class="fas fa-check-circle"></i>
+              <span>100% en ligne</span>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="hero-image">
+          <img src="assets/images/dashboard-preview.png" alt="Tableau de bord ComptAssist">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Rest of your sections... -->
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <h2 class="section-title">Tout ce dont vous avez besoin pour gérer votre facturation</h2>
+      <p class="section-subtitle">Découvrez les fonctionnalités qui simplifient votre quotidien</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h3>Facturation professionnelle</h3>
+          <p>Créez des factures personnalisées en quelques secondes avec votre logo et vos coordonnées.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3>Factures récurrentes</h3>
+          <p>Automatisez vos factures récurrentes et gagnez un temps précieux chaque mois.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Tableaux de bord</h3>
+          <p>Suivez vos performances financières avec des indicateurs clairs et personnalisables.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Mobile friendly</h3>
+          <p>Accédez à votre espace et gérez votre facturation depuis n'importe quel appareil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Prêt à simplifier votre facturation ?</h2>
+      <p>Rejoignez des milliers d'entreprises qui font confiance à notre solution</p>
+      <a [routerLink]="['/auth/register']" class="btn btn-white">Commencer maintenant</a>
+    </div>
+  </section>
 </main>
 
-<!-- Floating CTA -->
-<a routerLink="/auth/register" class="floating-cta" nbTooltip="Commencez maintenant !">
-    ✨ Essai Gratuit
-</a>
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">C</span>
+          <span class="logo-text">ComptAssist</span>
+        </div>
+        <p>La solution de facturation en ligne pour les professionnels au Maroc.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a [routerLink]="['/']">Accueil</a></li>
+          <li><a [routerLink]="['/features']">Fonctionnalités</a></li>
+          <li><a [routerLink]="['/pricing']">Tarifs</a></li>
+          <li><a [routerLink]="['/contact']">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope"></i> contact&#64;comptassist.ma</p>
+        <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 ComptAssist. Tous droits réservés.</p>
+      <div class="legal-links">
+        <a [routerLink]="['/privacy']">Confidentialité</a>
+        <a [routerLink]="['/terms']">Conditions d'utilisation</a>
+      </div>
+    </div>
+  </div>
+</footer>

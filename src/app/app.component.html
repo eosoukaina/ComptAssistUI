@@ -1,29 +1,63 @@
-<nb-layout>
-    <nb-layout-header fixed>
-        <header class="header">
-            <nav class="nav-container">
-                <div class="nav-left">
-                    <img src="assets/logo.png" alt="Logo" class="logo" height="40" width="40">
-                    <span class="brand-name">ComptAssist</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
-                    <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
-                    <li><a routerLink="/features" routerLinkActive="active">Fonctionnalités</a></li>
-                    <li><a routerLink="/pricing" routerLinkActive="active">Tarifs</a></li>
-                    <li><a routerLink="/contact" routerLinkActive="active">Contactez-nous</a></li>
-                </ul>
-            </nav>
-        </header>
-    </nb-layout-header>
+<div class="app-container">
+  <header class="header">
+    <nav class="nav-container">
+      <div class="nav-left">
+        <img src="assets/logo.png" alt="Logo" class="logo" height="40" width="40">
+        <a routerLink="/" class="brand-name">ComptAssist</a>
+      </div>
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+        <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+        <li><a routerLink="/features" routerLinkActive="active">Fonctionnalités</a></li>
+        <li><a routerLink="/pricing" routerLinkActive="active">Tarifs</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contactez-nous</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a routerLink="/auth/login" class="btn btn-outline">Connexion</a>
+        <a routerLink="/auth/register" class="btn btn-primary">Inscription</a>
+      </div>
+    </nav>
+  </header>
 
-    <nb-layout-column>
-        <router-outlet></router-outlet>
-    </nb-layout-column>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 
-    <nb-layout-footer fixed>
-        <footer class="footer">
-            2025 ComptAssist - Tous droits réservés
-        </footer>
-    </nb-layout-footer>
-</nb-layout>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="assets/logo.png" alt="Logo" height="40" width="40">
+            <span>ComptAssist</span>
+          </div>
+          <p>Votre solution de gestion de facturation en ligne simple et efficace.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Liens rapides</h4>
+          <ul>
+            <li><a routerLink="/">Accueil</a></li>
+            <li><a routerLink="/services">Services</a></li>
+            <li><a routerLink="/features">Fonctionnalités</a></li>
+            <li><a routerLink="/pricing">Tarifs</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contactez-nous</h4>
+          <p><i class="fas fa-envelope"></i> contact&#64;comptassist.ma</p>
+          <p><i class="fas fa-phone"></i> +212 5XX-XXXXXX</p>
+          <p><i class="fas fa-map-marker-alt"></i> Casablanca, Maroc</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 ComptAssist. Tous droits réservés.</p>
+        <div class="legal-links">
+          <a routerLink="/privacy">Confidentialité</a>
+          <a routerLink="/terms">Conditions d'utilisation</a>
+          <a routerLink="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
