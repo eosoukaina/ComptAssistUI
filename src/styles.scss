@@ -1,0 +1,97 @@
+// styles.scss
+@use '@angular/material' as mat;
+@use '@nebular/theme/styles' as *;
+
+/* Import Nebular Eva Icons CSS */
+@import '~@nebular/eva-icons/style/css';
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Angular Material theming */
+@include mat.core();
+
+// Define the palettes for your theme
+$primary-palette: mat.define-palette(mat.$indigo-palette);
+$accent-palette: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$theme: mat.define-light-theme((
+        color: (
+                primary: $primary-palette,
+                accent: $accent-palette,
+                warn: $warn-palette,
+        ),
+        typography: mat.define-typography-config(
+                $font-family: 'Inter', sans-serif,
+        ),
+        density: 0,
+));
+
+// Include theme styles for core and each component used in your app
+@include mat.all-component-themes($theme);
+
+/* Nebular Theme */
+$nb-themes: nb-register-theme((
+  // Add your Nebular theme customizations here
+  // Example:
+  // color-primary-100: #f2f6ff,
+  // color-primary-200: #d9e4ff,
+  // ...
+), default, default);
+
+/* Global Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom variables */
+:root {
+  --primary-color: #4F46E5;
+  --accent-color: #F59E0B;
+  --light: #f8fafc;
+  --dark: #1e293b;
+  --white: #ffffff;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Global utility classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
