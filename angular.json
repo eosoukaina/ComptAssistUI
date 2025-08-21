@@ -19,6 +19,12 @@
             "polyfills": [
               "zone.js"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules",
+                "src"
+              ]
+            },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -28,8 +34,9 @@
               "src/assets"
             ],
             "styles": [
-              "@nebular/theme/styles/prebuilt/default.css",
-              "src/styles.css"
+              "node_modules/@nebular/theme/styles/prebuilt/default.css",
+              "node_modules/eva-icons/style/eva-icons.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -43,16 +50,19 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "4kb",
+                  "maximumError": "10kb"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -61,16 +71,19 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "comptassistUI:build:production"
+              "browserTarget": "comptassistUI:build:production"
             },
             "development": {
-              "buildTarget": "comptassistUI:build:development"
+              "browserTarget": "comptassistUI:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "comptassistUI:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -81,20 +94,20 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "@nebular/theme/styles/prebuilt/default.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "defaultProject": "comptassistUI",
+  "cli": {
+    "analytics": false
   }
 }
